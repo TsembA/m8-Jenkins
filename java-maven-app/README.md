@@ -1,4 +1,4 @@
-In this project, we are building a Java-Maven app and deploying it to a private DockerHub repository automaticaly using Jenkins.
+# In this project, we are building a Java-Maven app and deploying it to a private DockerHub repository automaticaly using Jenkins.
 ### Steps
 1. Install Docker on the server
 2. Install Jenkins using Docker on the server
