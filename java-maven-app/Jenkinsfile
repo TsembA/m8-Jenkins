@@ -8,34 +8,41 @@ pipeline {
     stages {
         stage("init") {
             steps {
-                script {
-                    gv = load "script.groovy"
+                dir('java-maven-app') {
+                    script {
+                        gv = load "script.groovy"
+                    }
                 }
             }
         }
         stage("build jar") {
             steps {
-                script {
-                    gv.buildJar()
-
+                dir('java-maven-app') {
+                    script {
+                        gv.buildJar()
+                    }
                 }
             }
         }
 
         stage("build image") {
             steps {
-                script {
-                    gv.buildImage()
+                dir('java-maven-app') {
+                    script {
+                        gv.buildImage()
+                    }
                 }
             }
         }
 
         stage("deploy") {
             steps {
-                script {
-                    gv.deployApp()
+                dir('java-maven-app') {
+                    script {
+                        gv.deployApp()
+                    }
                 }
             }
         }               
     }
-} 
+}
