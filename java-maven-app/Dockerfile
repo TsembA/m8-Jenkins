@@ -2,7 +2,7 @@
 FROM amazoncorretto:8-alpine3.17-jre
 
 # Expose application port
-EXPOSE 8080
+EXPOSE 22345
 
 # Copy and rename JAR to a fixed name
 COPY ./target/java-maven-app-*.jar /usr/app/java-maven-app.jar
