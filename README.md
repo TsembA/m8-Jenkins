@@ -107,6 +107,3 @@ It allows us to define common functions, variables, and steps in a centralized l
 * Speed: Speeds up software delivery.
 * Consistency: Ensures consistent builds and deployments.
 * Scalability: Handles multiple projects and teams.
-
-
-### Check java-maven-app foder for the Project info
