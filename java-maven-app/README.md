@@ -9,3 +9,4 @@
 7. Connect to the server and run container using ```docker run``` command 
 8. Check in the browser if app is running
 9. Use docker logs <CONTAINER_NAME> for bug fix
+###
