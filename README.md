@@ -62,10 +62,10 @@ Uses Jenkins file written in Groovy to define CI/CD pipeline as code.
 Simple Jenkinsfile:
 
 ``` groovy
-pipeline { // must be top-level
-    agent any // Where to execute. Can be any avaliable agent or node
-    stages { // What kind of steps should be executed
-        //descibe the stage with it own name and logic
+pipeline {          // must be top-level
+    agent any       // Where to execute. Can be any avaliable agent or node
+    stages {        // Describe the steps that should be executed
+                    // Name each stage and explain its logic
         stage('Build') {
             steps {
                 sh 'mvn clean install'
