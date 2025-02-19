@@ -1,15 +1,16 @@
+#!/usr/bin/env groovy
+
+@Library('jenkins-shared-library')
 def gv
 
-pipeline {   
+pipeline {
     agent any
     tools {
         maven 'Maven'
     }
+
     stages {
-        stage("init") {
-            when {
-                expression { env.BRANCH_NAME == "jenkins-jobs" }
-            }
+        stage('init') {
             steps {
                 dir('java-maven-app') {
                     script {
@@ -19,43 +20,30 @@ pipeline {
             }
         }
 
-        stage("build jar") {
-            when {
-                expression { env.BRANCH_NAME == "jenkins-jobs" }
-            }
+        stage('build jar') {
             steps {
-                dir('java-maven-app') {
-                    script {
-                        gv.buildJar()
-                    }
+                script {
+                    buildjar()
+                }
+            }
+        }
+        
+        stage('build images') {
+            steps {
+                script {
+                    buildImage()
                 }
             }
         }
 
-        stage("build image") {
-            when {
-                expression { env.BRANCH_NAME == "jenkins-jobs" }
-            }
+        stage('COMMIT VERSION UPDATE') {
             steps {
                 dir('java-maven-app') {
                     script {
-                        gv.buildImage()
+                        commitVersionUpdate()
                     }
                 }
             }
         }
-
-        stage("deploy") {
-            when {
-                expression { env.BRANCH_NAME == "jenkins-jobs" }
-            }
-            steps {
-                dir('java-maven-app') {
-                    script {
-                        gv.deployApp()
-                    }
-                }
-            }
-        }               
     }
 }

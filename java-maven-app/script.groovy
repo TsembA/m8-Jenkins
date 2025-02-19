@@ -6,9 +6,9 @@ def buildJar() {
 def buildImage() {
     echo "building the docker image..."
     withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        sh 'docker build -t dancedevops/my-app:jma-6.0 .'
+        sh 'docker build -t dancedevops/java-maven-app:jma-6.0 .'
         sh 'echo $PASS | docker login -u $USER --password-stdin'
-        sh 'docker push dancedevops/my-app:jma-6.0'
+        sh 'docker push dancedevops/java-maven-app:jma-6.0'
     }
 }
 
