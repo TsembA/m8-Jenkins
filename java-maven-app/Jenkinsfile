@@ -7,8 +7,6 @@ pipeline {
     }
     stages {
         stage("init") {
-            when {
-                expression { env.BRANCH_NAME == "master" }
             }
             steps {
                 dir('java-maven-app') {
@@ -20,39 +18,33 @@ pipeline {
         }
 
         stage("build jar") {
-            when {
-                expression { env.BRANCH_NAME == "master" }
             }
             steps {
                 dir('java-maven-app') {
                     script {
-                        gv.buildJar()
+                        buildJar()
                     }
                 }
             }
         }
 
         stage("build image") {
-            when {
-                expression { env.BRANCH_NAME == "master" }
             }
             steps {
                 dir('java-maven-app') {
                     script {
-                        gv.buildImage()
+                        buildImage()
                     }
                 }
             }
         }
 
         stage("deploy") {
-            when {
-                expression { env.BRANCH_NAME == "master" }
             }
             steps {
                 dir('java-maven-app') {
                     script {
-                        gv.deployApp()
+                        deployApp()
                     }
                 }
             }
