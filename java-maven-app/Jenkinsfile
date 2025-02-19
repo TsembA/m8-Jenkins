@@ -1,53 +1,43 @@
-def gv // Declare at the top for proper scope
+def gv
 
 pipeline {   
     agent any
     tools {
         maven 'Maven'
     }
-    environment {
-        PROJECT_DIR = 'java-maven-app'
-    }
     stages {
-        stage("Init") {
+        stage("init") {
             steps {
-                dir("${PROJECT_DIR}") {
+                dir('java-maven-app') {
                     script {
                         gv = load "script.groovy"
                     }
                 }
             }
         }
-        stage("Build Jar") {
-            when {
-                branch "jenkins-jobs"
-            }
+        stage("build jar") {
             steps {
-                dir("${PROJECT_DIR}") {
+                dir('java-maven-app') {
                     script {
                         gv.buildJar()
                     }
                 }
             }
         }
-        stage("Build Image") {
-            when {
-                branch "jenkins-jobs"
-            }
+
+        stage("build image") {
             steps {
-                dir("${PROJECT_DIR}") {
+                dir('java-maven-app') {
                     script {
                         gv.buildImage()
                     }
                 }
             }
         }
-        stage("Deploy") {
-            when {
-                branch "jenkins-jobs"
-            }
+
+        stage("deploy") {
             steps {
-                dir("${PROJECT_DIR}") {
+                dir('java-maven-app') {
                     script {
                         gv.deployApp()
                     }
@@ -55,3 +45,4 @@ pipeline {
             }
         }               
     }
+}
