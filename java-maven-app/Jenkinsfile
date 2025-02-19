@@ -7,6 +7,9 @@ pipeline {
     }
     stages {
         stage("init") {
+            when {
+                expression { env.BRANCH_NAME == "jenkins-jobs" }
+            }
             steps {
                 dir('java-maven-app') {
                     script {
@@ -15,7 +18,11 @@ pipeline {
                 }
             }
         }
+
         stage("build jar") {
+            when {
+                expression { env.BRANCH_NAME == "jenkins-jobs" }
+            }
             steps {
                 dir('java-maven-app') {
                     script {
@@ -26,6 +33,9 @@ pipeline {
         }
 
         stage("build image") {
+            when {
+                expression { env.BRANCH_NAME == "jenkins-jobs" }
+            }
             steps {
                 dir('java-maven-app') {
                     script {
@@ -36,6 +46,9 @@ pipeline {
         }
 
         stage("deploy") {
+            when {
+                expression { env.BRANCH_NAME == "jenkins-jobs" }
+            }
             steps {
                 dir('java-maven-app') {
                     script {
