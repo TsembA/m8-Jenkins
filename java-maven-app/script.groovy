@@ -1,5 +1,5 @@
-def deployApp() {
-    echo 'deploying the application...'
+def buildjar() {
+    echo "Building JAR file..."
+    sh "mvn clean package"
 }
-
 return this

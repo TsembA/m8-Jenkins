@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('init') {
             steps {
-                dir('java-maven-app') {
+             {
                     script {
                         gv = load "script.groovy"
                     }
@@ -20,11 +20,12 @@ pipeline {
             }
         }
 
+
         stage('build jar') {
             steps {
                 dir('java-maven-app') {
                     script {
-                        buildjar()
+                        gv.buildjar()
                     }
                 }
             }
