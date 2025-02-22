@@ -22,20 +22,16 @@ pipeline {
 
         stage('build jar') {
             steps {
-                dir('java-maven-app') {
-                    script {
-                        buildjar()
-                    }
+                script {
+                    buildjar()
                 }
             }
         }
         
         stage('build images') {
             steps {
-                dir('java-maven-app') {
-                    script {
-                        buildImage()
-                    }
+                script {
+                    buildImage()
                 }
             }
         }
